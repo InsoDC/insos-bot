@@ -1,0 +1,207 @@
+🤖 DISCORD REACTION ROLES BOT - SETUP GUIDE
+═══════════════════════════════════════════════════════════════
+
+This bot will automatically create beautiful embeds and give roles when users react!
+
+═══════════════════════════════════════════════════════════════
+
+📋 STEP 1: CREATE A DISCORD BOT
+───────────────────────────────────────
+
+1. Go to https://discord.com/developers/applications
+2. Click "New Application"
+3. Give it a name like "Reaction Roles"
+4. Click "Create"
+5. Go to "Bot" section on the left
+6. Click "Add Bot" → "Yes, do it!"
+7. Under "Privileged Gateway Intents" enable:
+   ✅ PRESENCE INTENT
+   ✅ SERVER MEMBERS INTENT
+   ✅ MESSAGE CONTENT INTENT
+8. Click "Save Changes"
+9. Click "Reset Token" → Copy the token (SAVE THIS!)
+
+═══════════════════════════════════════════════════════════════
+
+📋 STEP 2: INVITE BOT TO YOUR SERVER
+───────────────────────────────────────
+
+1. Still in Discord Developer Portal
+2. Go to "OAuth2" → "URL Generator"
+3. Check these scopes:
+   ✅ bot
+   ✅ applications.commands
+4. Check these bot permissions:
+   ✅ Manage Roles
+   ✅ Send Messages
+   ✅ Embed Links
+   ✅ Add Reactions
+   ✅ Read Message History
+5. Copy the generated URL at the bottom
+6. Paste it in your browser
+7. Select your server → Authorize
+
+═══════════════════════════════════════════════════════════════
+
+📋 STEP 3: INSTALL PYTHON & DEPENDENCIES
+───────────────────────────────────────
+
+1. Install Python 3.8+ from https://www.python.org/downloads/
+2. Open Command Prompt / Terminal
+3. Navigate to where you saved the bot files
+4. Run: pip install -r requirements.txt
+
+═══════════════════════════════════════════════════════════════
+
+📋 STEP 4: SET UP YOUR BOT TOKEN
+───────────────────────────────────────
+
+OPTION A - Environment Variable (Recommended):
+
+Windows (Command Prompt):
+set DISCORD_BOT_TOKEN=your_token_here
+
+Windows (PowerShell):
+$env:DISCORD_BOT_TOKEN="your_token_here"
+
+Linux/Mac:
+export DISCORD_BOT_TOKEN=your_token_here
+
+
+OPTION B - Create .env file:
+
+1. Create a file named ".env" in the same folder as the bot
+2. Add this line:
+   DISCORD_BOT_TOKEN=your_token_here
+3. Replace "your_token_here" with your actual bot token
+
+═══════════════════════════════════════════════════════════════
+
+📋 STEP 5: FIX ROLE HIERARCHY
+───────────────────────────────────────
+
+CRITICAL: Your bot role must be ABOVE the roles it assigns!
+
+1. Go to Server Settings → Roles
+2. Drag "Reaction Roles" bot role ABOVE all your color roles
+3. Save Changes
+
+═══════════════════════════════════════════════════════════════
+
+📋 STEP 6: RUN THE BOT
+───────────────────────────────────────
+
+1. Open Command Prompt/Terminal
+2. Navigate to bot folder
+3. Run: python reaction_roles_bot.py
+4. You should see: "✅ Bot is online as [Bot Name]!"
+
+═══════════════════════════════════════════════════════════════
+
+📋 STEP 7: CREATE THE REACTION ROLE MESSAGES
+───────────────────────────────────────
+
+1. Go to your Discord server
+2. In the channel where you want reaction roles, type:
+   !setup
+
+3. The bot will create all 4 embeds with reactions!
+4. The bot will send you configuration code
+5. Copy that code
+6. Open reaction_roles_bot.py
+7. Replace the REACTION_ROLES = {} section with the code
+8. Save the file
+9. Stop the bot (Ctrl+C)
+10. Run it again: python reaction_roles_bot.py
+
+═══════════════════════════════════════════════════════════════
+
+✅ STEP 8: TEST IT!
+───────────────────────────────────────
+
+1. Go to the reaction role messages
+2. Click a reaction
+3. You should get the role immediately!
+4. Click again to remove the role
+
+═══════════════════════════════════════════════════════════════
+
+🎯 BOT COMMANDS
+───────────────────────────────────────
+
+!setup
+  - Creates all 4 reaction role embeds in current channel
+  - Only admins can use
+
+!setup [channel_id]
+  - Creates embeds in specific channel
+  - Example: !setup 1234567890123456789
+
+!ping
+  - Check if bot is online
+  - Shows latency
+
+═══════════════════════════════════════════════════════════════
+
+🔧 TROUBLESHOOTING
+───────────────────────────────────────
+
+❌ "Bot is not responding"
+→ Check bot is online (green dot in member list)
+→ Check bot has permissions in the channel
+
+❌ "Bot can't add roles"
+→ Bot role must be ABOVE the roles it's assigning
+→ Check bot has "Manage Roles" permission
+
+❌ "Reactions don't do anything"
+→ Make sure you updated REACTION_ROLES with the message IDs
+→ Restart the bot after updating the code
+
+❌ "Bot token invalid"
+→ Go to Discord Developer Portal → Bot → Reset Token
+→ Copy the new token and update your .env file
+
+❌ "ModuleNotFoundError: No module named 'discord'"
+→ Run: pip install -r requirements.txt
+
+═══════════════════════════════════════════════════════════════
+
+🚀 ADVANCED: KEEP BOT RUNNING 24/7
+───────────────────────────────────────
+
+OPTION 1 - Use a hosting service:
+• Replit (free, easy)
+• Heroku (free tier available)
+• Railway (free tier available)
+• AWS EC2 (advanced)
+
+OPTION 2 - Keep it running on your PC:
+Windows:
+• Use Task Scheduler to auto-start on boot
+
+Linux:
+• Use systemd or screen/tmux
+
+═══════════════════════════════════════════════════════════════
+
+📝 NOTES
+───────────────────────────────────────
+
+• Bot needs to stay online for reactions to work
+• If bot goes offline and comes back, reactions still work
+• You can edit the embeds and colors in the bot code
+• All your role IDs are already configured in the code
+• The bot logs all role additions/removals in console
+
+═══════════════════════════════════════════════════════════════
+
+Need help? Common issues:
+
+1. Bot offline → Run python reaction_roles_bot.py
+2. No permissions → Check role hierarchy
+3. Reactions not working → Update REACTION_ROLES and restart bot
+
+═══════════════════════════════════════════════════════════════
+
+Made with ✨ for your Discord server
